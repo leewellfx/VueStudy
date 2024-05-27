@@ -2,7 +2,7 @@
  * @Author: Leewellwaste zzzz_justice@qq.com
  * @Date: 2024-05-24 16:19:13
  * @LastEditors: Leewellwaste zzzz_justice@qq.com
- * @LastEditTime: 2024-05-27 17:23:36
+ * @LastEditTime: 2024-05-27 15:03:41
  * @FilePath: \VueStudy\vue-project\src\components\Person.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -55,13 +55,14 @@
   <!-- // js  -->
 <script lang="ts" setup>
 // 引入reactive 和ref
-import {ref,reactive} from 'vue'
+import { reactive } from 'vue';
+import {ref} from 'vue'
 
 // 数据+reactive() 可以转化为响应示
 let address =ref('北京')
-let car = ref({brand:'Benz',prie:100})
+let car = reactive({brand:'Benz',prie:100})
 
-let games =ref([
+let games =reactive([
   {id:'game1',gamename:'元神'},
   {id:'game2',gamename:'王者'},
   {id:'game3',gamename:'吃鸡'},
@@ -77,7 +78,7 @@ let test = reactive( {
 })
 // 方法
 function changprice(){
-  car.value.prie += 10
+  car.prie += 10
 }
 
 function changaddress(){
@@ -85,11 +86,7 @@ function changaddress(){
 }
 
 function changGame1(){
-  // games[0].gamename = 'LOL'
-
-  games.value[0].gamename = '魔兽'
-
-
+  games[0].gamename = 'LOL'
   
 }
 
