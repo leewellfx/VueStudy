@@ -1,90 +1,79 @@
-<!--
- * @Author: Leewellwaste zzzz_justice@qq.com
- * @Date: 2024-05-24 16:19:13
- * @LastEditors: Leewellwaste zzzz_justice@qq.com
- * @LastEditTime: 2024-05-30 17:35:17
- * @FilePath: \VueStudy\vue-project\src\components\Person.vue
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
--->
-
-
-
-<!-- 配置数据 -->
 <script lang="ts">
-    export default {
-    name: 'PersonIN'
-  }
-  </script>
+export default {
+  name:'PersonIn'
+}
+</script>
 
-  
-<!-- html -->
 <template>
-    <div class="person">
-      地点:{{address}}
-      <br>
-      车子型号:{{car.brand}}
-      <br>
-      车子价格:{{ car.price}}W
-      <br>
-      <button @click="changprice" > 修改价格</button>
-      <button @click="changaddress"> 更换地点</button>
-      <button @click="changband">修改品牌</button>
-      <button @click="changcar"> 更换车子</button>
-      <br>
-      <br>
-    </div>
-  </template>
-   
+  <div class="person"> 
+    <h2>{{ age }}</h2>
+    <button @click="addAge"> 增加一岁</button>
+    <br><br>
+
+    <p>名字:{{ person.userName }}</p>
+    <p>住址:{{ person.address }}</p>
+    <button @click="changUsername">改名字</button>
+    <button @click="changAddress">改住址</button>
+    <button @click="changPerson">一键修改</button>
+
+  </div>
+</template>
 
 
-  <!-- // js  -->
+
 <script lang="ts" setup>
-// 引入reactive 和ref
-import {ref,reactive} from 'vue'
+import { ref,reactive,watch } from "vue";
+//1.数据age
+let age = ref(24)
 
-// 数据+reactive() 可以转化为响应示
-let address =ref('北京')
-let car = ref({
-  brand:'Benz',
-  price:100
+let person = ref({
+  userName:'leewell',
+  address:'BeiJing'
+
 })
 
 
-// 方法
-function changprice(){
-  car.value.price += 10
+
+
+//2.方法
+function addAge(){
+  age.value += 1
 }
 
-function changaddress(){
-  address.value = '上海'
-} 
-
-function changband(){
-  car.value.brand = '奔驰'
+function changUsername(){
+  person.value.userName = 'jackson'
 }
 
-function changcar(){
-  Object.assign(car.value,{brand:'宝马',price:40});
+function changAddress(){
+  person.value.address = 'USA'
 }
+
+function changPerson(){
+  person.value = {userName:'jackson',address:'USA'}
+}
+
+
+//3.监视
+watch(age,function(newValue,oldValue){
+  console.log('Have Changed',newValue,oldValue)
+})
+
+watch(person,function(newValue,oldValue){
+  console.log('Have Changeds',newValue,oldValue)
+})
+
+
 </script>
 
 
 
-  
-  // css
-  <style>
-  .person {
-    border: 2px solid pink;
-    font-size: 16px; 
-    padding: 20px; 
-    padding-left: 20px; 
-    margin-bottom: 10px; 
-    flex:auto
-  }
 
-  .personul{
-    font-size: 20px; 
-  }
-  </style>
-  
-  
+
+<style>
+div .person{
+  height: 200px;
+  width: 500px;
+  background-color: pink;
+  border-style:dashed ;  
+}
+</style>
