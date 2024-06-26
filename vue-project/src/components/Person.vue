@@ -1,51 +1,66 @@
+<!--
+ * @Author: Leewellwaste zzzz_justice@qq.com
+ * @Date: 2024-05-24 16:19:13
+ * @LastEditors: Leewellwaste zzzz_justice@qq.com
+ * @LastEditTime: 2024-06-21 14:47:33
+ * @FilePath: \VueStudy\vue-project\src\components\Person.vue
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
 <script lang="ts">
 export default {
-  name: 'randomPhoto'
+  name: 'routTest'
 }
+
 </script>
 
-<!-- 1.html -->
-<template>
-  <div class="container">
-    <h1>Photo Show</h1>
-    <hr>
-    <img v-for="(photo, index) in photoList" :key="index" :src="photo" alt="Photo">
 
-    <button @click="changePhoto">Tap Toggle Photos</button>
-  </div>
+<template>
+  <div class="resume">
+    <!-- 1.index -->
+<h1>Resume</h1>
+<!-- 2.catalog -->
+<div class="catalog">
+<RouterLink to="/home">Home</RouterLink>
+<RouterLink to="/about">Abouts</RouterLink>
+<RouterLink to="/news">News</RouterLink>
+</div>
+<!-- 3.show -->
+<div class="show">
+  <RouterView></RouterView>
+
+</div>
+
+</div>
 </template>
 
-<!-- 2.js -->
+
 <script lang="ts" setup>
-import { reactive } from "vue";
-import axios from "axios";
-
-let photoList = reactive([
-  'http://127.0.0.1:5000/random-photo'
-]);
-
-function changePhoto(){
-  axios.get('http://127.0.0.1:5000/random-photo')
-    .then(response => {
-      // 修改: 将图片 URL 的属性名从 response.data.photo 修改为 response.data
-      photoList[0] = response.data;
-    })
-    .catch(error => {
-      console.error('获取图片错误:', error);
-    });
-}
+import {RouterLink, RouterView } from 'vue-router';
 </script>
 
-<!-- 3.style -->
+
 <style>
-.container {
-  width: 400px;
-  height: 600px;
-  background-color: pink;
+.resume {
+  border: 1px solid #000;
+  height: 300px;
+  /* align-content:center; */
+  text-align: center
 }
 
-.container img {
-  width: 400px;
-  height: 300px;
+.resume .catalog {
+  
+  display: flex;
+  justify-content: space-between;
+  padding: 30px;
+  margin-top: -30px;
 }
+
+.resume .show{
+  border: 1px solid red;
+  width: 749px;
+  height: 180px;
+
+}
+
 </style>
+
