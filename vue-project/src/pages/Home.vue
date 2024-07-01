@@ -10,7 +10,7 @@
 export default {
     name:"homePage"
 }
-</script>
+</script>   
 
 <template>
     <div class=".homeContainer">
